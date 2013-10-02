@@ -1,0 +1,22 @@
+<div class="header">sea-svcrate-mockuser <a class="btn">Sign Out</a></div>
+<div class="main-content">
+	<form class="form-search">
+	<label>Profile ID: </label><input type="text" class="serach-query" id="txtprofileId"> <button class="btn" id="btnGo" ng-click="goToId()">Go</button>
+	</form>
+	<button class="btn" id="btnOpenSearch" ng-click="advancedSearch=true" ng-show="!advancedSearch">Open Search</button>
+	<button class="btn" id="btnCloseSearch" ng-click="advancedSearch=false" ng-show="advancedSearch">Close Search</button>
+	<form class="form-inline" ng-show="advancedSearch" id="divAdvancedSearch">
+		<label>Company Name:</label> <input type="text" id="txtCompanyName"><br/>
+		<label>Address:</label> <input type="text" id="txtAdressLine1">
+		<label>City:</label> <input type="text" id="txtCity">
+		<label>State:</label> <input type="text" id="txtStateProvince">
+		<label>Country:</label> <input type="text" id="txtCountry">
+		
+		<button id="btnSearch" class="btn">Search</button>
+		<ul>
+			<li ng-repeat="company in companies>
+				<a>{{company.id}}</a>{{company.name}}	
+			</li>
+		</ul>
+	</form>
+</div>

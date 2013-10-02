@@ -1,0 +1,42 @@
+
+div.header{
+	text-align:right;
+	background-image: -webkit-linear-gradient(top, #ab0000, #f9f7f5); /* For Chrome and Safari */
+	background-image:    -moz-linear-gradient(top, #ab0000, #f9f7f5); /* For old Fx (3.6 to 15) */
+}
+
+form {
+	margin-top:10px;
+}
+
+div.main-content{
+	margin-left:10%
+}
+
+ul{
+	list-style-type: none;
+}
+
+li{
+	list-style-type: none;
+	padding:3px 0 0 0;
+}
+
+span.cell3{
+	margin-right:75px;
+}
+ul.mainTable{
+	border-width:3px 0 0 0;
+	border-style:solid;
+	margin-top:10px;
+}
+
+li.svc{
+	background-color:efefef;
+}
+
+li.rate{
+	border-style:solid;
+	border-width:0 1px 1px 0;
+	background-color:dddddd;
+}

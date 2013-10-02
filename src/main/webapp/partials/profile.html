@@ -1,0 +1,60 @@
+<div class="header">sea-svcrate-mockuser <a class="btn">Sign Out</a></div>
+
+<div class=profileHeader>
+	<h3>{{profile.company.businessKey}} - {{profile.company.name}}</h3>
+	<button class="btn" id="btnBackToSearch" ng-click="backToSearch()">Back to Profile Search</button>
+	<button class="btn" id="btnMoreInfo" ng-show="!moreCompanyInfo" ng-click="moreCompanyInfo=true">Show Details</button>
+		<button class="btn" id="btnMoreInfo" ng-show="moreCompanyInfo" ng-click="moreCompanyInfo=false">Hide Details</button>
+	<div class="moreInfoDiv" ng-show="moreCompanyInfo">
+		Address: {{profile.company.address}} </br>
+		City: {{profile.company.city}} </br>
+		State/Province: {{profile.company.state}} </br>
+		Country: {{profile.company.country}} </br>
+	</div>
+</div>
+
+<form class="form-inline filterDiv well" id="filterDiv" ng-show="mode=='view'">
+    <label>Locations:</label> <input type="text" ng-model="fltrOrigin"/> - <input type="text" ng-model="fltrDestination"/>
+    <label>Service Name:</label><input type="text" ng-model="fltrSvcName"/>
+</form>
+
+<div id="toolbar">
+	<button id="btnShowAddServices" class="btn" ng-show="mode=='view'" ng-click="mode='addServices'">Add Services</button>
+	<button id="btnShowAddRates"  class="btn" ng-show="mode=='view'" ng-click="mode='addRates'">Add Rates</button>
+</div>
+       		
+<form class="form-inline" id="divServiceForm" ng-show="mode=='addServices'">
+	<label>Locations:</label> <input type="text" ng-model="newOrigin"/> - <input type="text" ng-model="newDestination"/>
+	<label>Service Name:</label><input type="text" ng-model="newServiceName"/>
+	<button id="btnAddServices" class="btn" ng-click="addServices()">Add</button>
+	<button id="btnCancelAddRates" class="btn" ng-click="mode='view'">Cancel</button>
+</form>
+       		
+<form class="form-inline" id="divRateForm" ng-show="mode=='addRates'">
+	<label>Effective:</label><input type="text" ng-model="newEffective"/>
+	<label>Expiration:</label><input type="text" ng-model="newExpiration"/>
+	<label>Currency:</label><input type="text" ng-model="newCurrency"/>
+	<label>Amount:</label><input type="text" ng-model="newAmount"/>
+	<button id="btnAddRates" ng-click="addRates()" class="btn">Add</button>
+	<button id="btnCancelAddRates" class="btn" ng-click="mode='view'">Cancel</button>
+</form>
+
+<ul class="mainTable">
+    <li class="svc" ng-repeat="serviceItem in profile.serviceItems | filter:serviceFilter">
+			    
+	    <span class="cell3"><input type="checkbox" ng-model="serviceItem.selected"/></span>
+	    <span class="cell3"><b>{{serviceItem.origin}}-{{serviceItem.destination}}</b></span>
+	    <span class="cell3"> {{serviceItem.primaryName && '['+serviceItem.primaryName+'] -'}}
+	    	{{serviceItem.sellService.name}}</span>
+	    <button class="btn" ng-show="serviceItem.new">X</button>
+	    <ul>
+		   	<li class="rate" ng-repeat="rateItem in serviceItem.rateItems | filter:rateFilter">
+		   		<span class="cell3">{{rateItem.effectiveDate}} - {{rateItem.expirationDate}}</span>
+		   		<span class="cell3">{{rateItem.rate.amount}} {{rateItem.rate.currency.name}}</span>
+		   		<button class="btn" ng-show="rateItem.new">X</button>
+		   	</li>
+	    </ul>
+	    
+	 </li>
+</ul>
+<button class="btn" ng-click="saveAll()" ng-show="mode!='view'">Save</button>

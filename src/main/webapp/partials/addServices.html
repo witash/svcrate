@@ -1,0 +1,15 @@
+Location: <input type="text" id="txtOrigin"/> -
+<input type="text" id="txtDestination"/>
+Service Name: <input type="text" id="txtServiceName"/>
+<button id="btnAddService" ng-click="addToTemporary()">Add</button>
+<button id="addRatesBtn" ng-click="addRates()">Add Rates</button>
+<div id="divRateForm" ng-show="addingRates">
+	Currency:<input type="text" id="txtCurrency"/>
+	Amount:<input type="text" id="txtAmount"/>
+</div>
+<ul>
+	<li ng-repeat="serviceitem in newserviceitems">
+		{{serviceitem.origin}} - {{serviceitem.destination}} {{serviceitem.name}}
+	</li>
+</ul>
+<button id="btnAddToProfile" ng-click="addToProfile()" ng-show="newserviceitems">Add To Profile</button>
